@@ -4,15 +4,15 @@ import * as momentNs from 'moment';
 const moment = momentNs;
 
 @Component({
-  selector: 'app-calendar',
+  selector: 'lib-calendar',
   templateUrl: './calendar.component.html',
   styleUrls: ['./calendar.component.scss']
 })
 export class CalendarComponent implements OnInit {
   @Output() apply: EventEmitter<any> = new EventEmitter();
 
-  private _start: any;
-  private _end: any;
+  private _start: momentNs.Moment;
+  private _end: momentNs.Moment;
   private _triggered: any;
   leftCalendar: Calendar;
   rightCalendar: Calendar;

@@ -14,7 +14,7 @@ import * as momentNs from 'moment';
 const moment = momentNs;
 
 @Component({
-  selector: 'app-daterangepicker',
+  selector: 'lib-daterangepicker',
   templateUrl: './daterangepicker.component.html',
   styleUrls: ['./daterangepicker.component.scss']
 })
@@ -31,8 +31,9 @@ export class DaterangepickerComponent implements OnInit, AfterViewInit, AfterVie
   showCalendar: boolean;
   trigger: boolean;
 
-  @Input() start: any;
-  @Input() end: any;
+  @Input() opens = 'left';
+  @Input() start: momentNs.Moment;
+  @Input() end: momentNs.Moment;
   @Input() format = 'MM/DD/YYYY';
   @Output() startChange = new EventEmitter();
   @Output() endChange = new EventEmitter();
@@ -86,6 +87,7 @@ export class DaterangepickerComponent implements OnInit, AfterViewInit, AfterVie
   ngAfterViewInit() {
     setTimeout(() => {
       this.selectRange(this.ranges[0]);
+      console.log(this.opens);
     }, 0);
   }
 
@@ -105,7 +107,7 @@ export class DaterangepickerComponent implements OnInit, AfterViewInit, AfterVie
       }
     }, 0);
   }
-  renderText(start: any, end: any) {
+  renderText(start: momentNs.Moment, end: momentNs.Moment) {
     if (start && end) {
       setTimeout(() => {
         this.title = '';
@@ -139,9 +141,9 @@ export class DaterangepickerComponent implements OnInit, AfterViewInit, AfterVie
   triggerCalendar() {
     this.activeItem = 'Custom Range';
     setTimeout(() => {
-      if (this.showCalendar) {
+      if (this.showCalendar && this.opens === 'left') {
         this.menuLeft += 556;
-      } else {
+      } else if (this.opens === 'left') {
         this.menuLeft -= 556;
       }
       this.showCalendar = !this.showCalendar;

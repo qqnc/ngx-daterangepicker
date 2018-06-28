@@ -1,7 +1,9 @@
 <div class="body">
-  <app-daterangepicker 
+  <lib-daterangepicker 
       class="daterangepicker"
-      [(start)]="start" [(end)]="end" format="MM-DD-YYYY"></app-daterangepicker>
+      [(start)]="start" [(end)]="end" format="MM-DD-YYYY" opens="left"></lib-daterangepicker>
+
+      <div class="result">[ {{start}} - {{end}} ]</div>
 </div>
 
-<div class="result">{{start}} - {{end}}</div>
+

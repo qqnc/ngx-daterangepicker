@@ -9,8 +9,8 @@
 </span>
 
 <div class="daterangepicker dropdown-menu ltr opensleft show-calendar" [ngStyle]="{ 'display': show? 'flex': 'none', 'top': menuTop+'px', 'left': menuLeft+'px', 'right': 'auto' }">
-  <app-calendar [start]="currentStart" [end]="currentEnd" [ngStyle]="{'display': showCalendar?'block':'none'}" 
-    [triggered]="trigger" (apply)='detected($event)' #cEl></app-calendar>
+  <lib-calendar [start]="currentStart" [end]="currentEnd" [ngStyle]="{'display': showCalendar?'block':'none'}" 
+    [triggered]="trigger" (apply)='detected($event)' #cEl *ngIf="opens==='left'"></lib-calendar>
   <div class="ranges">
     <ul>
       <li *ngFor='let range of ranges' [ngClass]="{ 'active': activeItem === range.text }" (click)='selectRange(range); toggleMenu()'>{{range.text}}</li>
@@ -21,5 +21,6 @@
       <button class="cancelBtn n-btn n-btn-sm n-btn-default" type="button" (click)="toggleMenu()">Cancel</button>
     </div>
   </div>
-  
+  <lib-calendar [start]="currentStart" [end]="currentEnd" [ngStyle]="{'display': showCalendar?'block':'none'}" 
+    [triggered]="trigger" (apply)='detected($event)' #cEl *ngIf="opens==='right'"></lib-calendar>
 </div> 
