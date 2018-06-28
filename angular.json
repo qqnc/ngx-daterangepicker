@@ -1,11 +1,11 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "version": 1,
-  "newProjectRoot": "projects",
+  "newProjectRoot": "libraries",
   "projects": {
     "ngx-libraries": {
       "root": "",
-      "sourceRoot": "src",
+      "sourceRoot": "playground",
       "projectType": "application",
       "prefix": "app",
       "schematics": {
@@ -18,16 +18,16 @@
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
             "outputPath": "dist/ngx-libraries",
-            "index": "src/index.html",
-            "main": "src/main.ts",
-            "polyfills": "src/polyfills.ts",
-            "tsConfig": "src/tsconfig.app.json",
+            "index": "playground/index.html",
+            "main": "playground/main.ts",
+            "polyfills": "playground/polyfills.ts",
+            "tsConfig": "playground/tsconfig.app.json",
             "assets": [
-              "src/favicon.ico",
-              "src/assets"
+              "playground/favicon.ico",
+              "playground/assets"
             ],
             "styles": [
-              "src/styles.scss"
+              "playground/styles.scss"
             ],
             "scripts": []
           },
@@ -35,8 +35,8 @@
             "production": {
               "fileReplacements": [
                 {
-                  "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.prod.ts"
+                  "replace": "playground/environments/environment.ts",
+                  "with": "playground/environments/environment.prod.ts"
                 }
               ],
               "optimization": true,
@@ -71,17 +71,17 @@
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "src/test.ts",
-            "polyfills": "src/polyfills.ts",
-            "tsConfig": "src/tsconfig.spec.json",
-            "karmaConfig": "src/karma.conf.js",
+            "main": "playground/test.ts",
+            "polyfills": "playground/polyfills.ts",
+            "tsConfig": "playground/tsconfig.spec.json",
+            "karmaConfig": "playground/karma.conf.js",
             "styles": [
               "styles.scss"
             ],
             "scripts": [],
             "assets": [
-              "src/favicon.ico",
-              "src/assets"
+              "playground/favicon.ico",
+              "playground/assets"
             ]
           }
         },
@@ -114,6 +114,46 @@
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": "e2e/tsconfig.e2e.json",
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "ngx-daterangepicker": {
+      "root": "libraries/ngx-daterangepicker",
+      "sourceRoot": "libraries/ngx-daterangepicker/src",
+      "projectType": "library",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "libraries/ngx-daterangepicker/tsconfig.lib.json",
+            "project": "libraries/ngx-daterangepicker/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "project": "libraries/ngx-daterangepicker/ng-package.prod.json"
+            }
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "libraries/ngx-daterangepicker/src/test.ts",
+            "tsConfig": "libraries/ngx-daterangepicker/tsconfig.spec.json",
+            "karmaConfig": "libraries/ngx-daterangepicker/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libraries/ngx-daterangepicker/tsconfig.lib.json",
+              "libraries/ngx-daterangepicker/tsconfig.spec.json"
+            ],
             "exclude": [
               "**/node_modules/**"
             ]

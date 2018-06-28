@@ -1,0 +1,71 @@
+<div class="calendar left" (mouseleave)="hoverOut();">
+  <div class="daterangepicker_input">
+    <input class="input-mini form-control active" type="text" name="daterangepicker_start" [value]="startStr">
+    <i class="la la-calendar glyphicon glyphicon-calendar"></i><div class="calendar-time" style="display: block;">
+      <div></div>
+      <i class="fa fa-clock-o glyphicon glyphicon-time"></i>
+    </div>
+  </div>
+  <div class="calendar-table">
+    <table class="table-condensed">
+      <thead>
+        <tr>
+          <th class="prev available" (click)="clickPrev();">
+            <i class="la la-angle-left"></i>
+          </th><th colspan="5" class="month">{{leftCalendar.dateHtml}}</th>
+          <th>
+          </th>
+        </tr>
+        <tr>
+          <th *ngFor='let day of locale.daysOfWeek'>{{day}}</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let row of [0,1,2,3,4,5]">
+          <td *ngFor="let col of [0,1,2,3,4,5,6]" data-title="{{'r'+row+'c'+col}}"
+            [ngClass]="{'today': leftCalendar.matrix[row][col].today, 'off': leftCalendar.matrix[row][col].off, 'active': leftCalendar.matrix[row][col].active, 'start-date': leftCalendar.matrix[row][col].startDate, 'end-date': leftCalendar.matrix[row][col].endDate, 'in-range': leftCalendar.matrix[row][col].inRange, 'available': leftCalendar.matrix[row][col].available, 'weekend': leftCalendar.matrix[row][col].weekend  }"
+            (click)="clickDate(leftCalendar.calendarForView[row][col])"
+            (mouseover)="hoverDate(leftCalendar.calendarForView[row][col])">
+            {{ leftCalendar.calendarForView[row][col].date() }}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<div class="calendar right" (mouseleave)="hoverOut();">
+  <div class="daterangepicker_input">
+    <input class="input-mini form-control" type="text" name="daterangepicker_end" [value]="endStr">
+    <i class="la la-calendar"></i>
+    <div class="calendar-time" style="display: none;">
+      <div></div>
+      <i class="fa fa-clock-o glyphicon glyphicon-time"></i>
+    </div>
+  </div>
+  <div class="calendar-table">
+    <table class="table-condensed">
+      <thead>
+        <tr>
+          <th></th>
+          <th colspan="5" class="month">{{rightCalendar.dateHtml}}</th>
+          <th class="next available" (click)="clickNext()">
+            <i class="la la-angle-right"></i>
+          </th>
+        </tr>
+        <tr>
+          <th *ngFor='let day of locale.daysOfWeek'>{{day}}</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let row of [0,1,2,3,4,5]">
+          <td *ngFor="let col of [0,1,2,3,4,5,6]" data-title="{{'r'+row+'c'+col}}"
+              [ngClass]="{'today': rightCalendar.matrix[row][col].today, 'off': rightCalendar.matrix[row][col].off, 'active': rightCalendar.matrix[row][col].active, 'start-date': rightCalendar.matrix[row][col].startDate, 'end-date': rightCalendar.matrix[row][col].endDate, 'in-range': rightCalendar.matrix[row][col].inRange, 'available': rightCalendar.matrix[row][col].available, 'weekend': rightCalendar.matrix[row][col].weekend  }"
+              (click)="clickDate(rightCalendar.calendarForView[row][col])"
+              (mouseover)="hoverDate(rightCalendar.calendarForView[row][col])">
+            {{ rightCalendar.calendarForView[row][col].date() }}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
