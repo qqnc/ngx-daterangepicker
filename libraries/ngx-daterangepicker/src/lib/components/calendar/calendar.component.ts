@@ -10,6 +10,7 @@ const moment = momentNs;
 })
 export class CalendarComponent implements OnInit {
   @Output() apply: EventEmitter<any> = new EventEmitter();
+  @Output() cancel: EventEmitter<any> = new EventEmitter();
 
   private _start: momentNs.Moment;
   private _end: momentNs.Moment;
@@ -220,6 +221,14 @@ export class CalendarComponent implements OnInit {
     }
 
     calendar.dateHtml = this.locale.monthNames[calendar.calendarForView[1][1].month()] + calendar.calendarForView[1][1].format(' YYYY');
+  }
+
+  onApply() {
+    this.apply.emit({start: this._start, end: this._end});
+  }
+
+  onCancel() {
+    this.cancel.emit();
   }
 
   @Input()

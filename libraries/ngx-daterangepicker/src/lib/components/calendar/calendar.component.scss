@@ -151,6 +151,25 @@ input[type=password] {
   }
 }
 
+.n-btn:not(:disabled):not(.disabled) {
+  cursor: pointer;
+}
+
+.buttons-field {
+  text-align: right;
+
+  .n-btn {
+    padding: .6rem 1rem;
+    margin-right: 6px;
+    border-radius: 1rem;
+    &.n-btn-success {
+      color: #fff;
+      background-color: #34bfa3;
+      border-color: #34bfa3;
+    }
+  }
+}
+
 @media (min-width: 564px){
   .calendar {
     .calendar-table {
