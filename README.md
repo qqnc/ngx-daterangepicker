@@ -50,6 +50,10 @@ Declare in your html
 **`ranges`** - [**`boolean`**] - show ranges options.  shown if true, hide if false.
 
 
+## Development Environment
+
+Fork, code, and build it, then run demo.
+
 ## Build the library
 
 run `npm run build`
