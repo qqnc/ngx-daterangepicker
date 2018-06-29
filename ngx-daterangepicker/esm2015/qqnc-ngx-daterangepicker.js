@@ -1,0 +1,12 @@
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes} checked by tsc
+ */
+/**
+ * Generated bundle index. Do not edit.
+ */
+export { NgxDaterangepickerModule } from './public_api';
+export { CalendarComponent as ɵb } from './lib/components/calendar/calendar.component';
+export { DaterangepickerComponent as ɵa } from './lib/components/daterangepicker.component';
+
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoicXFuYy1uZ3gtZGF0ZXJhbmdlcGlja2VyLmpzIiwic291cmNlUm9vdCI6Im5nOi8vQHFxbmMvbmd4LWRhdGVyYW5nZXBpY2tlci8iLCJzb3VyY2VzIjpbInFxbmMtbmd4LWRhdGVyYW5nZXBpY2tlci50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOzs7Ozs7O0FBSUEseUNBQWMsY0FBYyxDQUFDO0FBRTdCLE9BQU8sRUFBQyxpQkFBaUIsSUFBSSxFQUFFLEVBQUMsTUFBTSw4Q0FBOEMsQ0FBQztBQUNyRixPQUFPLEVBQUMsd0JBQXdCLElBQUksRUFBRSxFQUFDLE1BQU0sNENBQTRDLENBQUMiLCJzb3VyY2VzQ29udGVudCI6WyIvKipcbiAqIEdlbmVyYXRlZCBidW5kbGUgaW5kZXguIERvIG5vdCBlZGl0LlxuICovXG5cbmV4cG9ydCAqIGZyb20gJy4vcHVibGljX2FwaSc7XG5cbmV4cG9ydCB7Q2FsZW5kYXJDb21wb25lbnQgYXMgybVifSBmcm9tICcuL2xpYi9jb21wb25lbnRzL2NhbGVuZGFyL2NhbGVuZGFyLmNvbXBvbmVudCc7XG5leHBvcnQge0RhdGVyYW5nZXBpY2tlckNvbXBvbmVudCBhcyDJtWF9IGZyb20gJy4vbGliL2NvbXBvbmVudHMvZGF0ZXJhbmdlcGlja2VyLmNvbXBvbmVudCc7Il19

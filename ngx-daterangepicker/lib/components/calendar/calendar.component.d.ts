@@ -1,0 +1,37 @@
+import { Calendar } from './../../models/calendar.model';
+import { OnInit, EventEmitter } from '@angular/core';
+export declare class CalendarComponent implements OnInit {
+    apply: EventEmitter<any>;
+    cancel: EventEmitter<any>;
+    ranges: any;
+    private _start;
+    private _end;
+    private _triggered;
+    leftCalendar: Calendar;
+    rightCalendar: Calendar;
+    locale: any;
+    dateHtml: string;
+    today: boolean[][];
+    startStr: string;
+    endStr: string;
+    selecting: boolean;
+    tempStart: any;
+    constructor();
+    ngOnInit(): void;
+    initCalendar(): void;
+    clearCalendarFlags(side: string): void;
+    updateMonth(): void;
+    clickDate(m: any): void;
+    hoverDate(m: any): void;
+    hoverOut(): void;
+    clickPrev(): void;
+    clickNext(): void;
+    renderCalendar(side: string): void;
+    onApply(): void;
+    onCancel(): void;
+    start: any;
+    setStart(start: any): void;
+    end: any;
+    setEnd(end: any): void;
+    triggered: any;
+}
