@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "libraries",
   "projects": {
-    "ngx-libraries": {
+    "playground": {
       "root": "",
       "sourceRoot": "playground",
       "projectType": "application",
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/ngx-libraries",
+            "outputPath": "gh-pages",
             "index": "playground/index.html",
             "main": "playground/main.ts",
             "polyfills": "playground/polyfills.ts",
@@ -54,18 +54,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "ngx-libraries:build"
+            "browserTarget": "playground:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "ngx-libraries:build:production"
+              "browserTarget": "playground:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "ngx-libraries:build"
+            "browserTarget": "playground:build"
           }
         },
         "test": {
@@ -99,7 +99,7 @@
         }
       }
     },
-    "ngx-libraries-e2e": {
+    "playground-e2e": {
       "root": "e2e/",
       "projectType": "application",
       "architect": {
@@ -107,7 +107,7 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "ngx-libraries:serve"
+            "devServerTarget": "playground:serve"
           }
         },
         "lint": {
@@ -121,7 +121,7 @@
         }
       }
     },
-    "ngx-daterangepicker": {
+    "@qqnc/ngx-daterangepicker": {
       "root": "libraries/ngx-daterangepicker",
       "sourceRoot": "libraries/ngx-daterangepicker/src",
       "projectType": "library",
@@ -162,5 +162,5 @@
       }
     }
   },
-  "defaultProject": "ngx-libraries"
+  "defaultProject": "playground"
 }

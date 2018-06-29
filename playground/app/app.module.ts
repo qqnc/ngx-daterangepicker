@@ -1,4 +1,4 @@
-import { NgxDaterangepickerModule } from 'ngx-daterangepicker';
+import { NgxDaterangepickerModule } from '@qqnc/ngx-daterangepicker';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 

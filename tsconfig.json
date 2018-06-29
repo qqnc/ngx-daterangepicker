@@ -17,10 +17,10 @@
       "dom"
     ],
     "paths": {
-      "ngx-daterangepicker": [
+      "@qqnc/ngx-daterangepicker": [
         "dist/ngx-daterangepicker"
       ],
-      "ngx-daterangepicker/*": [
+      "@qqnc/ngx-daterangepicker/*": [
         "dist/ngx-daterangepicker/*"
       ]
     }

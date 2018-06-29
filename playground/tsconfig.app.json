@@ -3,7 +3,12 @@
   "compilerOptions": {
     "outDir": "../out-tsc/app",
     "module": "es2015",
-    "types": []
+    "types": [],
+    "paths": {
+      "@qqnc/ngx-daterangepicker": [
+        "dist/ngx-daterangepicker"
+      ]
+    }
   },
   "exclude": [
     "src/test.ts",
