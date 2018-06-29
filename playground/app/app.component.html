@@ -1,7 +1,7 @@
 <div class="body">
   <lib-daterangepicker 
       class="daterangepicker"
-      [(start)]="start" [(end)]="end" format="MM-DD-YYYY" opens="left" [pill]="true" [ranges]="false"  (complete)="testCallback($event)"></lib-daterangepicker>
+      [(start)]="start" [(end)]="end" format="MM-DD-YYYY" outputFormat="MM-DD-YYYY" opens="left" [pill]="true" (complete)="testCallback($event)"></lib-daterangepicker>
 
       <div class="result">[ {{start}} - {{end}} ]</div>
 </div>

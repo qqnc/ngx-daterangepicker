@@ -3,7 +3,8 @@
   "version": "0.0.1",
   "scripts": {
     "ng": "ng",
-    "build": "ng build ngx-daterangepicker",
+    "build": "ng build @qqnc/ngx-daterangepicker",
+    "build:gh-pages": "ng build --prod --base-href https://qqnc.github.com/ngx-daterangepicker",
     "serve:demo": "ng serve",
     "test": "ng test",
     "lint": "ng lint",

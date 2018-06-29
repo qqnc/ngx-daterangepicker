@@ -27,11 +27,13 @@ export class DaterangepickerComponent implements OnInit, AfterViewInit, AfterVie
   activeItem = 'Today';
   showCalendar: boolean;
   trigger: boolean;
+  startDate: momentNs.Moment;
+  endDate: momentNs.Moment;
 
   // Input attributes
   @Input() opens = 'left';
-  @Input() start: momentNs.Moment;
-  @Input() end: momentNs.Moment;
+  @Input() start: any;
+  @Input() end: any;
   @Input() outputFormat;
   @Input() format = 'MM/DD/YYYY';
   @Input() minDate: any;
@@ -94,18 +96,18 @@ export class DaterangepickerComponent implements OnInit, AfterViewInit, AfterVie
       this.pill = false;
     }
     if (typeof this.start === 'string') {
-      this.start = moment(this.start, this.format);
+      this.startDate = moment(this.start, this.format);
     }
 
     if (typeof this.end === 'string') {
-      this.end = moment(this.end, this.format);
+      this.endDate = moment(this.end, this.format);
     }
 
     if (typeof this.start === 'undefined') {
-      this.start = moment();
+      this.startDate = moment();
     }
     if (typeof this.end === 'undefined') {
-      this.start = moment();
+      this.startDate = moment();
     }
 
     if (typeof this.minDate === 'string' ) {
@@ -123,20 +125,32 @@ export class DaterangepickerComponent implements OnInit, AfterViewInit, AfterVie
       this.maxDate = moment(this.maxDate);
     }
 
-    if (!this.outputFormat && !this.pill) {
-      this.outputFormat = 'YYYY-MM-DD';
-    } else {
-      this.outputFormat = 'MMM D';
+    if (!this.outputFormat) {
+      if (!this.pill) {
+        this.outputFormat = 'YYYY-MM-DD';
+      } else {
+        this.outputFormat = 'MMM D';
+      }
+    }
+  }
+
+  selectRange(range: any) {
+    if (range) {
+      this.activeItem = range.text;
+      this.startDate = range.start;
+      this.endDate = range.end;
+
+      this.renderText(this.startDate, this.endDate);
+      this.emitResult();
     }
   }
 
   setCurrent() {
-
     if (this.ranges) {
       this.selectRange(this.ranges[0]);
     } else {
-      this.start = moment();
-      this.end = moment();
+      // this.start = moment();
+      // this.end = moment();
       this.renderText(this.start, this.end);
       this.emitResult();
     }
@@ -171,26 +185,15 @@ export class DaterangepickerComponent implements OnInit, AfterViewInit, AfterVie
       setTimeout(() => {
         if (period < 100 && diff < 86400000) {
           this.title = 'Today: ';
-          this.dateStr = this.start.format(this.outputFormat);
+          this.dateStr = start.format(this.outputFormat);
         } else if (period < 100 && diff >= 86400000) {
           this.title = 'Yesterday: ';
-          this.dateStr = this.start.format(this.outputFormat);
+          this.dateStr = start.format(this.outputFormat);
         } else {
           this.title = '';
           this.dateStr = start.format(this.outputFormat) + ' - ' + end.format(this.outputFormat);
         }
       }, 0);
-    }
-  }
-
-  selectRange(range: any) {
-    if (range) {
-      this.activeItem = range.text;
-      this.start = range.start;
-      this.end = range.end;
-
-      this.renderText(this.start, this.end);
-      this.emitResult();
     }
   }
 
@@ -217,20 +220,22 @@ export class DaterangepickerComponent implements OnInit, AfterViewInit, AfterVie
     }, 0);
   }
   detected(event: any) {
-    this.start = event.start;
-    this.end = event.end;
+    this.startDate = event.start;
+    this.endDate = event.end;
     this.emitResult();
-    this.renderText(this.start, this.end);
+    this.renderText(this.startDate, this.endDate);
     this.closeMenu();
     // console.log(event);
   }
 
   emitResult() {
     setTimeout(() => {
-
-      if (this.start && this.end) {
-        this.startChange.emit(this.start); // this is to calendar
-        this.endChange.emit(this.end); // this is to calendar
+      // Return value
+      if (this.startDate && this.endDate) {
+        this.start = this.startDate;
+        this.end = this.endDate;
+        this.startChange.emit(this.start.format(this.outputFormat)); // this is to calendar
+        this.endChange.emit(this.end.format(this.outputFormat)); // this is to calendar
         this.complete.emit({ start: this.start.format(this.outputFormat), end: this.end.format(this.outputFormat)});
       }
     }, 0);
