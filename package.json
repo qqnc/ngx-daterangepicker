@@ -11,7 +11,10 @@
     "e2e": "ng e2e"
   },
   "private": true,
-  "repository": "qqnc/ngx-daterangepicker",
+  "repository" :{ 
+    "type" : "git",
+    "url" : "https://github.com/qqnc/ngx-daterangepicker.git"
+  },
   "dependencies": {
     "@angular/animations": "^6.0.0",
     "@angular/common": "^6.0.0",

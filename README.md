@@ -1,10 +1,12 @@
 # ngx-datarangepicker
 
-Check [demo](https://qqnc.github.io/ngx-daterangepicker/)
+Check [DEMO](https://qqnc.github.io/ngx-daterangepicker/)
+
+<img src="https://s3-us-west-1.amazonaws.com/nate-public/ngx-dateranger.jpg">
 
 ## Install
 ```bash
-npm install @nc/ngx-daterangepicker
+npm install @nc/ngx-daterangepicker --save
 ```
 
 ## Configuration
