@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "gh-pages",
+            "outputPath": "docs",
             "index": "playground/index.html",
             "main": "playground/main.ts",
             "polyfills": "playground/polyfills.ts",
