@@ -5,6 +5,47 @@
 npm install @nc/ngx-daterangepicker
 ```
 
+## Configuration
+
+Ensure you import the module and the dependencies:
+In your module files. e.g. app.module.ts
+
+```javascript
+
+import { NgxDaterangepickerModule } from 'ngx-daterangepicker';
+
+@NgModule({
+   imports: [
+      BrowserModule,
+      NgxDaterangepickerModule
+
+       ...OtherModules 
+   ] // along with your other modules
+})
+export class AppModule {}
+```
+
+Declare in your html
+
+```html
+
+<lib-daterangepicker [(start)]="start" [(end)]="end" format="MM-DD-YYYY" opens="left" [pill]="true"></lib-daterangepicker>
+
+```
+
+#### Properties
+
+**`start`** - [(**`string`**)] - the binding variable of the return of the value of the start date.
+
+**`end`** - [(**`string`**)] - the binding variable of the return of the value of the end date.
+
+#### Properties (optional)
+
+**`format`** - [**`string`**] - the format of the return.  e.g: MM-DD-YYYY
+
+**`format`** - [**`string`**] - the side of the opened calendar. options: "left" or "right"
+
+
 ## Build the library
 
 run `npm run build`
