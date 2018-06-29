@@ -1,5 +1,7 @@
 # ngx-datarangepicker
 
+Check [demo](https://qqnc.github.io/ngx-daterangepicker/)
+
 ## Install
 ```bash
 npm install @nc/ngx-daterangepicker
@@ -35,11 +37,13 @@ Declare in your html
 
 #### Properties
 
-**`start`** - [(**`string`**)] - the binding variable of the return of the value of the start date.
+**`start`** - [(**`string`**)] - two-way binding variable of the start date.  It will also return when you apply.
 
-**`end`** - [(**`string`**)] - the binding variable of the return of the value of the end date.
+**`end`** - [(**`string`**)] - two-way binding variable of the end date. It will also return when you apply.
 
 #### Properties (optional)
+
+**`format`** - [**`string`**] - the format of the input.  e.g: MM-DD-YYYY.
 
 **`format`** - [**`string`**] - the format of the return.  e.g: MM-DD-YYYY.
 
@@ -47,7 +51,7 @@ Declare in your html
 
 **`pill`** - [**`boolean`**] - the style of the button.  pill button if true, input field if false.
 
-**`ranges`** - [**`boolean`**] - show ranges options.  shown if true, hide if false.
+**`ranges`** - [**`boolean`** or **`array`**] - show ranges options.  shown if true, hide if false.
 
 
 ## Development Environment
@@ -58,7 +62,7 @@ Fork, code, and build it, then run demo.
 
 run `npm run build`
 
-## Test library
+## Test the library
 
 run `npm run serve:demo` for a demo server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
