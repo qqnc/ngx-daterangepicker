@@ -24,8 +24,6 @@ export class DaterangepickerComponent implements OnInit, AfterViewInit, AfterVie
   menuLeft: any;
   dateStr: string;
   title: string;
-  currentStart: any;
-  currentEnd: any;
   activeItem = 'Today';
   showCalendar: boolean;
   trigger: boolean;
@@ -45,6 +43,7 @@ export class DaterangepickerComponent implements OnInit, AfterViewInit, AfterVie
   @Output() startChange = new EventEmitter();
   @Output() endChange = new EventEmitter();
   @Output() open: EventEmitter<any> = new EventEmitter();
+  @Output() complete: EventEmitter<any> = new EventEmitter();
   @ViewChild('cEl') cEl: ElementRef;
   @ViewChild('pickerElement') el: ElementRef;
   constructor() {
@@ -102,6 +101,13 @@ export class DaterangepickerComponent implements OnInit, AfterViewInit, AfterVie
       this.end = moment(this.end, this.format);
     }
 
+    if (typeof this.start === 'undefined') {
+      this.start = moment();
+    }
+    if (typeof this.end === 'undefined') {
+      this.start = moment();
+    }
+
     if (typeof this.minDate === 'string' ) {
       this.minDate = moment(this.minDate, this.format);
     }
@@ -110,12 +116,18 @@ export class DaterangepickerComponent implements OnInit, AfterViewInit, AfterVie
       this.maxDate = moment(this.maxDate, this.format);
     }
 
+    if (typeof this.minDate === 'object') {
+      this.minDate = moment(this.minDate);
+    }
+    if (typeof this.maxDate === 'object') {
+      this.maxDate = moment(this.maxDate);
+    }
+
     if (!this.outputFormat && !this.pill) {
       this.outputFormat = 'YYYY-MM-DD';
     } else {
       this.outputFormat = 'MMM D';
     }
-    console.log(this.outputFormat);
   }
 
   setCurrent() {
@@ -123,9 +135,9 @@ export class DaterangepickerComponent implements OnInit, AfterViewInit, AfterVie
     if (this.ranges) {
       this.selectRange(this.ranges[0]);
     } else {
-      this.currentStart = moment();
-      this.currentEnd = moment();
-      this.renderText(this.currentStart, this.currentEnd);
+      this.start = moment();
+      this.end = moment();
+      this.renderText(this.start, this.end);
       this.emitResult();
     }
   }
@@ -159,10 +171,10 @@ export class DaterangepickerComponent implements OnInit, AfterViewInit, AfterVie
       setTimeout(() => {
         if (period < 100 && diff < 86400000) {
           this.title = 'Today: ';
-          this.dateStr = this.currentStart.format(this.outputFormat);
+          this.dateStr = this.start.format(this.outputFormat);
         } else if (period < 100 && diff >= 86400000) {
           this.title = 'Yesterday: ';
-          this.dateStr = this.currentStart.format(this.outputFormat);
+          this.dateStr = this.start.format(this.outputFormat);
         } else {
           this.title = '';
           this.dateStr = start.format(this.outputFormat) + ' - ' + end.format(this.outputFormat);
@@ -174,10 +186,10 @@ export class DaterangepickerComponent implements OnInit, AfterViewInit, AfterVie
   selectRange(range: any) {
     if (range) {
       this.activeItem = range.text;
-      this.currentStart = range.start;
-      this.currentEnd = range.end;
+      this.start = range.start;
+      this.end = range.end;
 
-      this.renderText(this.currentStart, this.currentEnd);
+      this.renderText(this.start, this.end);
       this.emitResult();
     }
   }
@@ -205,24 +217,22 @@ export class DaterangepickerComponent implements OnInit, AfterViewInit, AfterVie
     }, 0);
   }
   detected(event: any) {
-    this.currentStart = event.start;
-    this.currentEnd = event.end;
+    this.start = event.start;
+    this.end = event.end;
     this.emitResult();
-    this.renderText(this.currentStart, this.currentEnd);
+    this.renderText(this.start, this.end);
     this.closeMenu();
     // console.log(event);
   }
 
   emitResult() {
     setTimeout(() => {
-      if (this.currentStart) {
-        this.start = this.currentStart.format(this.format);
+
+      if (this.start && this.end) {
+        this.startChange.emit(this.start); // this is to calendar
+        this.endChange.emit(this.end); // this is to calendar
+        this.complete.emit({ start: this.start.format(this.outputFormat), end: this.end.format(this.outputFormat)});
       }
-      if (this.currentEnd) {
-        this.end = this.currentEnd.format(this.format);
-      }
-      this.startChange.emit(this.start);
-      this.endChange.emit(this.end);
     }, 0);
   }
 

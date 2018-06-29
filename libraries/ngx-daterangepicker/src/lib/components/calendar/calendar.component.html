@@ -70,7 +70,7 @@
       </table>
     </div>
   </div>
-  <div class='buttons-field'>
+  <div class='buttons-field' *ngIf="!ranges">
     <button class="applyBtn n-btn n-btn-sm n-btn-success" type="button" (click)='onApply()'>Apply</button> 
     <button class="cancelBtn n-btn n-btn-sm n-btn-default" type="button" (click)='onCancel()'>Cancel</button>
   </div>

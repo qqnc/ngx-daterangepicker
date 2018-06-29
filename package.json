@@ -1,6 +1,6 @@
 {
-  "name": "ngx-daterangepicker",
-  "version": "0.0.0",
+  "name": "@nc/ngx-daterangepicker",
+  "version": "0.0.1",
   "scripts": {
     "ng": "ng",
     "build": "ng build ngx-daterangepicker",
@@ -10,6 +10,7 @@
     "e2e": "ng e2e"
   },
   "private": true,
+  "repository": "qqnc/ngx-daterangepicker",
   "dependencies": {
     "@angular/animations": "^6.0.0",
     "@angular/common": "^6.0.0",

@@ -12,6 +12,8 @@ export class CalendarComponent implements OnInit {
   @Output() apply: EventEmitter<any> = new EventEmitter();
   @Output() cancel: EventEmitter<any> = new EventEmitter();
 
+  @Input() ranges: any;
+
   private _start: momentNs.Moment;
   private _end: momentNs.Moment;
   private _triggered: any;
@@ -242,6 +244,8 @@ export class CalendarComponent implements OnInit {
 
   setStart(start: any) {
     this._start = start;
+    console.log('calendar start');
+    console.log(start);
     if (start) {
       this.startStr = start.format('MM/DD/YYYY');
     }

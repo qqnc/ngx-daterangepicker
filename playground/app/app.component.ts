@@ -12,4 +12,9 @@ export class AppComponent {
 
   constructor() {
   }
+
+  testCallback(event) {
+    console.log('This is callback');
+    console.log(event);
+  }
 }
