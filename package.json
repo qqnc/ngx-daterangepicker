@@ -1,5 +1,5 @@
 {
-  "name": "@nc/ngx-daterangepicker",
+  "name": "@qqnc/ngx-daterangepicker",
   "version": "0.0.1",
   "scripts": {
     "ng": "ng",
