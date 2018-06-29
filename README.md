@@ -41,9 +41,13 @@ Declare in your html
 
 #### Properties (optional)
 
-**`format`** - [**`string`**] - the format of the return.  e.g: MM-DD-YYYY
+**`format`** - [**`string`**] - the format of the return.  e.g: MM-DD-YYYY.
 
-**`format`** - [**`string`**] - the side of the opened calendar. options: "left" or "right"
+**`opens`** - [**`string`**] - the side of the opened calendar. options: "left" or "right".
+
+**`pill`** - [**`boolean`**] - the style of the button.  pill button if true, input field if false.
+
+**`ranges`** - [**`boolean`**] - show ranges options.  shown if true, hide if false.
 
 
 ## Build the library
