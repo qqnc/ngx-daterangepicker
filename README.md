@@ -1,5 +1,10 @@
 # ngx-datarangepicker
 
+## Install
+```bash
+npm install @nc/ngx-daterangepicker
+```
+
 ## Build the library
 
 run `npm run build`
