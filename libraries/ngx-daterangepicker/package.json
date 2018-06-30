@@ -1,11 +1,12 @@
 {
   "name": "@qqnc/ngx-daterangepicker",
-  "version": "0.0.2",
+  "version": "0.0.4",
   "peerDependencies": {
     "@angular/common": "^6.0.0-rc.0 || ^6.0.0",
     "@angular/core": "^6.0.0-rc.0 || ^6.0.0",
     "moment": "^2.22.2"
   },
+  "homepage": "https://qqnc.github.io/ngx-daterangepicker/",
   "repository": { 
     "type" : "git",
     "url" : "https://github.com/qqnc/ngx-daterangepicker.git"

@@ -20,8 +20,8 @@ const moment = momentNs;
 })
 export class DaterangepickerComponent implements OnInit, AfterViewInit, AfterViewChecked, OnChanges {
   show: boolean;
-  menuTop: any;
-  menuLeft: any;
+  menuTop: number;
+  menuLeft: number;
   dateStr: string;
   title: string;
   activeItem = 'Today';
@@ -32,14 +32,14 @@ export class DaterangepickerComponent implements OnInit, AfterViewInit, AfterVie
 
   // Input attributes
   @Input() opens = 'left';
-  @Input() start: any;
-  @Input() end: any;
+  @Input() start: momentNs.Moment;
+  @Input() end: momentNs.Moment;
   @Input() outputFormat;
   @Input() format = 'MM/DD/YYYY';
-  @Input() minDate: any;
-  @Input() maxDate: any;
-  @Input() pill: false;
-  @Input() ranges: any;
+  @Input() minDate: momentNs.Moment | string;
+  @Input() maxDate: momentNs.Moment | string;
+  @Input() pill = false;
+  @Input() ranges: boolean | object;
 
   // End of Input attributes
   @Output() startChange = new EventEmitter();
@@ -51,11 +51,10 @@ export class DaterangepickerComponent implements OnInit, AfterViewInit, AfterVie
   constructor() {
     this.show = false;
     this.showCalendar = false;
-    // this.menuTop = this.el.nativeElement.offsetTop;
-    // this.menuLeft = this.el.nativeElement.offsetLeft;
   }
 
   ngOnInit() {
+    // default range is true
     if (typeof this.ranges === 'undefined') {
       this.ranges = [
         {
@@ -92,6 +91,7 @@ export class DaterangepickerComponent implements OnInit, AfterViewInit, AfterVie
       ];
     }
 
+    // default pill is false
     if (typeof this.pill !== 'boolean') {
       this.pill = false;
     }
@@ -103,34 +103,38 @@ export class DaterangepickerComponent implements OnInit, AfterViewInit, AfterVie
       this.endDate = moment(this.end, this.format);
     }
 
+    // if start not given
     if (typeof this.start === 'undefined') {
       this.startDate = moment();
     }
+
+    // if end not given
     if (typeof this.end === 'undefined') {
       this.startDate = moment();
     }
 
+    // check if it's object before check if it's string
+    if (typeof this.minDate === 'object') {
+      this.minDate = moment(this.minDate);
+    }
+    // check if it's object before check if it's string
+    if (typeof this.maxDate === 'object') {
+      this.maxDate = moment(this.maxDate);
+    }
+
     if (typeof this.minDate === 'string' ) {
       this.minDate = moment(this.minDate, this.format);
+      console.log(this.minDate);
     }
 
     if (typeof this.maxDate === 'string') {
       this.maxDate = moment(this.maxDate, this.format);
     }
 
-    if (typeof this.minDate === 'object') {
-      this.minDate = moment(this.minDate);
-    }
-    if (typeof this.maxDate === 'object') {
-      this.maxDate = moment(this.maxDate);
-    }
-
-    if (!this.outputFormat) {
-      if (!this.pill) {
-        this.outputFormat = 'YYYY-MM-DD';
-      } else {
-        this.outputFormat = 'MMM D';
-      }
+    if (!this.pill && this.outputFormat) {
+      this.outputFormat = 'YYYY-MM-DD';
+    } else {
+      this.outputFormat = 'MMM D';
     }
   }
 

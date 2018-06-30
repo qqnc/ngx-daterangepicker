@@ -13,6 +13,8 @@ export class CalendarComponent implements OnInit {
   @Output() cancel: EventEmitter<any> = new EventEmitter();
 
   @Input() ranges: any;
+  @Input() minDate: momentNs.Moment;
+  @Input() maxDate: momentNs.Moment;
 
   private _start: momentNs.Moment;
   private _end: momentNs.Moment;
@@ -29,6 +31,8 @@ export class CalendarComponent implements OnInit {
   endStr: string;
   selecting: boolean;
   tempStart: any;
+  showPrev = true;
+  showAfter = true;
 
   constructor() {
     this.selecting = false;
@@ -50,6 +54,10 @@ export class CalendarComponent implements OnInit {
   }
 
   ngOnInit() {
+
+    console.log('min: ' + this.minDate.format('MM/DD/YYYY'));
+    console.log('max: ' + this.maxDate.format('MM/DD/YYYY'));
+
   }
 
   initCalendar() {
@@ -59,7 +67,8 @@ export class CalendarComponent implements OnInit {
 
   clearCalendarFlags(side: string) {
     const calendar = side === 'left' ? this.leftCalendar : this.rightCalendar;
-
+    this.showPrev = true;
+    this.showAfter = true;
     for (let row = 0; row < 6; row++) {
       for (let col = 0; col < 7; col++) {
         calendar.matrix[row][col] = new Matrix();
@@ -76,56 +85,11 @@ export class CalendarComponent implements OnInit {
         this.rightCalendar.month = this.start.clone().date(2).add(1, 'month');
       }
       this.leftCalendar.month = this.start.clone().date(2);
-      this.renderCalendar('left');
-      this.renderCalendar('right');
+      this.updateCalendar('left');
+      this.updateCalendar('right');
     }
   }
-
-  clickDate(m: any) {
-    if (!this.selecting) {
-      this.setStart(m);
-      this.setEnd(m);
-    } else {
-
-    }
-
-    this.selecting = !this.selecting;
-  }
-
-  hoverDate(m: any) {
-    if (!this.selecting) {
-      this.tempStart = m;
-      this.startStr = this.tempStart.format('MM/DD/YYYY');
-    } else {
-      if ( m > this._start) {
-        this.setEnd(m);
-      }
-    }
-  }
-
-  hoverOut() {
-    this.startStr = this._start.format('MM/DD/YYYY');
-  }
-
-  clickPrev() {
-    this.leftCalendar.month.subtract(1, 'month');
-    this.rightCalendar.month.subtract(1, 'month');
-    this.clearCalendarFlags('left');
-    this.clearCalendarFlags('right');
-    this.renderCalendar('left');
-    this.renderCalendar('right');
-  }
-
-  clickNext() {
-    this.leftCalendar.month.add(1, 'month');
-    this.rightCalendar.month.add(1, 'month');
-    this.clearCalendarFlags('left');
-    this.clearCalendarFlags('right');
-    this.renderCalendar('left');
-    this.renderCalendar('right');
-  }
-
-  renderCalendar(side: string) {
+  updateCalendar(side: string) {
     const calendar = side === 'left' ? this.leftCalendar : this.rightCalendar;
     const month = calendar.month.month();
     const year = calendar.month.year();
@@ -146,7 +110,6 @@ export class CalendarComponent implements OnInit {
     for (let i = 0; i < 6; i++) {
       calendar.calendarForView[i] = [];
     }
-    // console.log(calendar.calendarForView);
     // populate the calendar with date objects
     let startDay = daysInLastMonth - dayOfWeek + this.locale.firstDay + 1;
 
@@ -159,32 +122,16 @@ export class CalendarComponent implements OnInit {
     }
 
     let curDate = moment([lastYear, lastMonth, startDay, 12, minute, second]);
-    // console.log('current date');
-    // console.log(curDate);
     let col = 0, row = 0;
     for (let i = 0; i < 42; i++, col++, curDate = moment(curDate).add(24, 'hour')) {
       if (i > 0 && col % 7 === 0) {
           col = 0;
           row++;
       }
-      // console.log('set row: ' + row + ', col: ' + col);
 
       calendar.calendarForView[row][col] = curDate.clone().hour(hour).minute(minute).second(second);
-      // console.log(calendar.calendarForView[row][col].date());
 
       curDate.hour(12);
-
-      // if (this.minDate &&
-      //     calendar[row][col].format('YYYY-MM-DD') === this.minDate.format('YYYY-MM-DD') &&
-      //     calendar[row][col].isBefore(this.minDate) && side == 'left') {
-      //     calendar[row][col] = this.minDate.clone();
-      // }
-
-      // if (this.maxDate &&
-      //      calendar[row][col].format('YYYY-MM-DD') == this.maxDate.format('YYYY-MM-DD') &&
-      //      calendar[row][col].isAfter(this.maxDate) && side == 'right') {
-      //     calendar[row][col] = this.maxDate.clone();
-      // }
     }
     for (let i = 0; i < 6; i++) {
       for (let j = 0; j < 7; j++) {
@@ -194,6 +141,19 @@ export class CalendarComponent implements OnInit {
 
         if (row >= 1 && (calendar.calendarForView[i][j].month() !== calendar.calendarForView[1][1].month())) {
           calendar.matrix[i][j].off = true;
+        }
+
+        if (this.minDate &&
+            calendar.calendarForView[i][j].isBefore(this.minDate) &&
+            side === 'left') {
+          calendar.matrix[i][j].off = true;
+          this.showPrev = false;
+        }
+
+        if (this.maxDate &&
+          calendar.calendarForView[i][j].isAfter(this.maxDate) && side === 'right') {
+          calendar.matrix[i][j].off = true;
+          this.showAfter = false;
         }
         if (calendar.calendarForView[i][j].format('YYYY-MM-DD') === this.start.format('YYYY-MM-DD')) {
           calendar.matrix[i][j].active = true;
@@ -209,7 +169,6 @@ export class CalendarComponent implements OnInit {
         // highlight dates in-between the selected dates
         if (this.end != null && calendar.calendarForView[i][j] > this.start &&
           calendar.calendarForView[i][j] < this.end ) {
-          // console.log('This is in range: ' + calendar.calendarForView[i][j].format('MM/DD/YYYY'));
           calendar.matrix[i][j].inRange = true;
         }
 
@@ -223,6 +182,61 @@ export class CalendarComponent implements OnInit {
     }
 
     calendar.dateHtml = this.locale.monthNames[calendar.calendarForView[1][1].month()] + calendar.calendarForView[1][1].format(' YYYY');
+  }
+
+  clickDate(m: momentNs.Moment) {
+    if (!this.selecting) {
+      if (this.minDate && m.isBefore(this.minDate)) {
+        console.log('out of range');
+      } else if (this.maxDate && m.isAfter(this.maxDate)) {
+        console.log('out of range');
+      } else {
+        this.setStart(m);
+        this.setEnd(m);
+      }
+    } else {
+    }
+
+    this.selecting = !this.selecting;
+  }
+
+  hoverDate(m: any) {
+    if (!this.selecting) {
+      if (this.minDate && m.isBefore(this.minDate)) {
+        console.log('out of range');
+      } else if (this.maxDate && m.isAfter(this.maxDate)) {
+        console.log('out of range');
+      } else {
+        this.tempStart = m;
+        this.startStr = this.tempStart.format('MM/DD/YYYY');
+      }
+    } else {
+      if ( m > this._start) {
+        this.setEnd(m);
+      }
+    }
+  }
+
+  hoverOut() {
+    this.startStr = this._start.format('MM/DD/YYYY');
+  }
+
+  clickPrev() {
+    this.leftCalendar.month.subtract(1, 'month');
+    this.rightCalendar.month.subtract(1, 'month');
+    this.clearCalendarFlags('left');
+    this.clearCalendarFlags('right');
+    this.updateCalendar('left');
+    this.updateCalendar('right');
+  }
+
+  clickNext() {
+    this.leftCalendar.month.add(1, 'month');
+    this.rightCalendar.month.add(1, 'month');
+    this.clearCalendarFlags('left');
+    this.clearCalendarFlags('right');
+    this.updateCalendar('left');
+    this.updateCalendar('right');
   }
 
   onApply() {
@@ -244,8 +258,6 @@ export class CalendarComponent implements OnInit {
 
   setStart(start: any) {
     this._start = start;
-    console.log('calendar start');
-    console.log(start);
     if (start) {
       this.startStr = start.format('MM/DD/YYYY');
     }

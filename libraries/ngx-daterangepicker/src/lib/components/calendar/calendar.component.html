@@ -2,16 +2,16 @@
   <div class="calendar left" (mouseleave)="hoverOut();">
     <div class="daterangepicker_input">
       <input class="input-mini form-control active" type="text" name="daterangepicker_start" [value]="startStr">
-      <i class="la la-calendar glyphicon glyphicon-calendar"></i><div class="calendar-time" style="display: block;">
+      <i class="la la-calendar"></i><div class="calendar-time" style="display: block;">
         <div></div>
-        <i class="fa fa-clock-o glyphicon glyphicon-time"></i>
+        <i class="la la-clock-o"></i>
       </div>
     </div>
     <div class="calendar-table">
       <table class="table-condensed">
         <thead>
           <tr>
-            <th class="prev available" (click)="clickPrev();">
+            <th class="prev available" (click)="clickPrev();" *ngIf="showPrev">
               <i class="la la-angle-left"></i>
             </th><th colspan="5" class="month">{{leftCalendar.dateHtml}}</th>
             <th>
@@ -40,7 +40,7 @@
       <i class="la la-calendar"></i>
       <div class="calendar-time" style="display: none;">
         <div></div>
-        <i class="fa fa-clock-o glyphicon glyphicon-time"></i>
+        <i class="la la-clock-o"></i>
       </div>
     </div>
     <div class="calendar-table">
@@ -49,7 +49,7 @@
           <tr>
             <th></th>
             <th colspan="5" class="month">{{rightCalendar.dateHtml}}</th>
-            <th class="next available" (click)="clickNext()">
+            <th class="next available" (click)="clickNext()" *ngIf="showAfter">
               <i class="la la-angle-right"></i>
             </th>
           </tr>

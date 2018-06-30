@@ -29,7 +29,6 @@ export class Calendar {
   calendar: Calendar;
   calendarForView: any [][];
   matrix: Matrix [][];
-
   constructor() {
     this.calendarForView = [];
     this.matrix = [];
