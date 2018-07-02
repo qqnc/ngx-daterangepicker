@@ -16,7 +16,7 @@ In your module files. e.g. app.module.ts
 
 ```javascript
 
-import { NgxDaterangepickerModule } from 'ngx-daterangepicker';
+import { NgxDaterangepickerModule } from '@qqnc/ngx-daterangepicker';
 
 @NgModule({
    imports: [
