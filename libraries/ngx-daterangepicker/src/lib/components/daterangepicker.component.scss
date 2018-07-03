@@ -28,11 +28,14 @@
 }
 
 
-
+.n-btn {
+  border: none;
+}
 
 .n-btn:not(:disabled):not(.disabled) {
   cursor: pointer;
 }
+
 
 .n-btn.n-btn-success {
   color: #fff;
