@@ -55,10 +55,6 @@ export class CalendarComponent implements OnInit {
   }
 
   ngOnInit() {
-
-    console.log('min: ' + this.minDate.format('MM/DD/YYYY'));
-    console.log('max: ' + this.maxDate.format('MM/DD/YYYY'));
-
   }
 
   initCalendar() {

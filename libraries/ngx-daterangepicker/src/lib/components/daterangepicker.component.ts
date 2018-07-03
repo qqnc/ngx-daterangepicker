@@ -124,7 +124,6 @@ export class DaterangepickerComponent implements OnInit, AfterViewInit, AfterVie
 
     if (typeof this.minDate === 'string' ) {
       this.minDate = moment(this.minDate, this.format);
-      console.log(this.minDate);
     }
 
     if (typeof this.maxDate === 'string') {
