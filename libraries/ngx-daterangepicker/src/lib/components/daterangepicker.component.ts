@@ -34,12 +34,13 @@ export class DaterangepickerComponent implements OnInit, AfterViewInit, AfterVie
   @Input() opens = 'left';
   @Input() start: momentNs.Moment;
   @Input() end: momentNs.Moment;
-  @Input() outputFormat;
+  @Input() outputFormat = 'YYYY-MM-DD';
   @Input() format = 'MM/DD/YYYY';
   @Input() minDate: momentNs.Moment | string;
   @Input() maxDate: momentNs.Moment | string;
   @Input() pill = false;
   @Input() ranges: boolean | object;
+  @Input() pillFormat = 'MMM D';
 
   // End of Input attributes
   @Output() startChange = new EventEmitter();
@@ -129,12 +130,6 @@ export class DaterangepickerComponent implements OnInit, AfterViewInit, AfterVie
     if (typeof this.maxDate === 'string') {
       this.maxDate = moment(this.maxDate, this.format);
     }
-
-    if (!this.pill && this.outputFormat) {
-      this.outputFormat = 'YYYY-MM-DD';
-    } else {
-      this.outputFormat = 'MMM D';
-    }
   }
 
   selectRange(range: any) {
@@ -185,16 +180,23 @@ export class DaterangepickerComponent implements OnInit, AfterViewInit, AfterVie
     if (start && end) {
       const period = +end - +start;
       const diff = +moment() - +start;
+      let format = '';
+
+      if (this.pill) {
+        format = this.pillFormat;
+      } else {
+        format = this.outputFormat;
+      }
       setTimeout(() => {
         if (period < 100 && diff < 86400000) {
           this.title = 'Today: ';
-          this.dateStr = start.format(this.outputFormat);
+          this.dateStr = start.format(format);
         } else if (period < 100 && diff >= 86400000) {
           this.title = 'Yesterday: ';
-          this.dateStr = start.format(this.outputFormat);
+          this.dateStr = start.format(format);
         } else {
           this.title = '';
-          this.dateStr = start.format(this.outputFormat) + ' - ' + end.format(this.outputFormat);
+          this.dateStr = start.format(format) + ' - ' + end.format(format);
         }
       }, 0);
     }

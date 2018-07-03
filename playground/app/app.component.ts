@@ -7,8 +7,10 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'app';
-  start;
-  end;
+  start1;
+  end1;
+  start2;
+  end2;
 
   constructor() {
   }

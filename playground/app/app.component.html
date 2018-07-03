@@ -1,13 +1,31 @@
 <div class="body">
-  <lib-daterangepicker 
+  <div class="row">
+    <lib-daterangepicker 
       class="daterangepicker"
-      [(start)]="start" [(end)]="end" 
-      format="MM-DD-YYYY" outputFormat="MM-DD-YYYY" 
+      [(start)]="start1" [(end)]="end1" 
+      format="MM-DD-YYYY"
+      outputFormat="MM-DD-YYYY" 
       opens="left" [pill]="true" 
       minDate="6-10-2018" maxDate="12-20/2019"
       (complete)="testCallback($event)"></lib-daterangepicker>
 
-      <div class="result">[ {{start}} - {{end}} ]</div>
+      <div class="result">Binding Result: [ {{start1}} - {{end1}} ]</div>
+  </div>
+  
+  <hr>
+  <div class="row">
+    <lib-daterangepicker 
+        class="daterangepicker"
+        [(start)]="start2" [(end)]="end2" 
+        format="MM-DD-YYYY"
+        [pill]="false"
+        outputFormat="MM-DD-YYYY" 
+        opens="left" [pill]="true" 
+        minDate="6-10-2018" maxDate="12-20/2019"
+        (complete)="testCallback($event)"></lib-daterangepicker>
+      <div class="result">Binding Result: [ {{start2}} - {{end2}} ]</div>
+  </div>
+  
 </div>
 
 
