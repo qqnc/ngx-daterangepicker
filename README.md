@@ -59,6 +59,9 @@ Declare in your html
 
 **`ranges`** - [**`boolean`** or **`array`**] - show ranges options.  shown if true, hide if false.
 
+**`complete`** - (**`function`**) - the callback after selection. e.g: (complete)="testCallback($event)". $event will return { start: , **`string`**, end: **`string`** }
+
+
 ## Run demo in development environment
 
 Fork, code, and build it, then run demo.

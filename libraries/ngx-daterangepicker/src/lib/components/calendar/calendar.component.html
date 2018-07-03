@@ -2,10 +2,11 @@
   <div class="calendar left" (mouseleave)="hoverOut();">
     <div class="daterangepicker_input">
       <input class="input-mini form-control active" type="text" name="daterangepicker_start" [value]="startStr">
-      <i class="la la-calendar"></i><div class="calendar-time" style="display: block;">
+      <i class="la la-calendar"></i>
+      <!-- <div class="calendar-time" style="display: block;">
         <div></div>
         <i class="la la-clock-o"></i>
-      </div>
+      </div> -->
     </div>
     <div class="calendar-table">
       <table class="table-condensed">
@@ -33,6 +34,13 @@
         </tbody>
       </table>
     </div>
+    <!-- <div class="calendar-time" style="display: block;">
+        <i class="la la-clock-o"></i>
+      <div style='display: inline-block;'>
+        <input type="text" class='hour'>
+      </div>
+     
+    </div> -->
   </div>
   <div class="calendar right" (mouseleave)="hoverOut();">
     <div class="daterangepicker_input">

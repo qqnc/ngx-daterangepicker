@@ -7,6 +7,7 @@ const moment = momentNs;
   selector: 'lib-calendar',
   templateUrl: './calendar.component.html',
   styleUrls: ['./calendar.component.scss']
+  // encapsulation: ViewEncapsulation.Native
 })
 export class CalendarComponent implements OnInit {
   @Output() apply: EventEmitter<any> = new EventEmitter();
