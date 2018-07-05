@@ -1,4 +1,4 @@
-# ngx-datarangepicker
+# ngx-daterangepicker
 
 Check [DEMO](https://qqnc.github.io/ngx-daterangepicker/)
 
