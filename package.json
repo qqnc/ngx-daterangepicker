@@ -5,6 +5,7 @@
     "ng": "ng",
     "build": "ng build @qqnc/ngx-daterangepicker; gulp",
     "build:gh-pages": "ng build --prod --base-href \"https://qqnc.github.io/ngx-daterangepicker/\"",
+    "publish": "cd dist/ngx-daterangepicker; npm version patch; npm publish",
     "serve:demo": "ng serve",
     "test": "ng test",
     "lint": "ng lint",
