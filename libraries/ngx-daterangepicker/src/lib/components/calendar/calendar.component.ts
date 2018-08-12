@@ -75,13 +75,19 @@ export class CalendarComponent implements OnInit {
   updateMonth() {
     if (this.start && this.end) {
       this.initCalendar();
-      if (this.end.month() !== this.start.month() || this.end.year() !== this.start.year()) {
-        // this.rightCalendar.month = this.end.clone().date(2);
-        this.rightCalendar.month = this.start.clone().date(2).add(1, 'month');
+      const diff = this.end.month() - this.start.month();
+      if (!this.selecting || diff < 1) {
+        if (this.end.month() !== this.start.month() || this.end.year() !== this.start.year()) {
+          // this.rightCalendar.month = this.end.clone().date(2);
+          this.rightCalendar.month = this.start.clone().date(2).add(1, 'month');
+        } else {
+          this.rightCalendar.month = this.start.clone().date(2).add(1, 'month');
+        }
+        this.leftCalendar.month = this.start.clone().date(2);
       } else {
-        this.rightCalendar.month = this.start.clone().date(2).add(1, 'month');
+        this.rightCalendar.month = this.end.clone().date(2);
+        this.leftCalendar.month = this.end.clone().add(-1, 'month');
       }
-      this.leftCalendar.month = this.start.clone().date(2);
       this.updateCalendar('left');
       this.updateCalendar('right');
     }
