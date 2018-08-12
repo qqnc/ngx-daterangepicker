@@ -47,7 +47,7 @@ Declare in your html
 
 **`format`** - [**`string`**] - the format of the input.  e.g: MM-DD-YYYY.
 
-**`format`** - [**`string`**] - the format of the return.  e.g: MM-DD-YYYY.
+**`outputFormat`** - [**`string`**] - the format of the return.  e.g: MM-DD-YYYY.
 
 **`minDate`** - [**`string`** | **`moment`**] - the earlist date that user can select.
 
