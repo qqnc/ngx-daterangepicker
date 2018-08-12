@@ -6,7 +6,7 @@ Check [DEMO](https://qqnc.github.io/ngx-daterangepicker/)
 
 ## Install
 ```bash
-npm install @nc/ngx-daterangepicker --save
+npm install @qqnc/ngx-daterangepicker --save
 ```
 
 ## Configuration
