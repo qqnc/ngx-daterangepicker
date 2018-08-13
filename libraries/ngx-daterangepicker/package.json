@@ -1,6 +1,6 @@
 {
   "name": "@qqnc/ngx-daterangepicker",
-  "version": "0.0.12",
+  "version": "0.0.15",
   "description": "the date range picker mimic from daterangepicker.js and implement it in Angular way",
   "peerDependencies": {
     "@angular/common": "^6.0.0-rc.0 || ^6.0.0",
