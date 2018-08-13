@@ -1,5 +1,9 @@
 # ngx-daterangepicker
 
+
+[![npm version](https://badge.fury.io/js/%40qqnc%2Fngx-daterangepicker.svg)](https://badge.fury.io/js/%40qqnc%2Fngx-daterangepicker)
+
+
 Check [DEMO](https://qqnc.github.io/ngx-daterangepicker/)
 
 <img src="https://s3-us-west-1.amazonaws.com/nate-public/ngx-dateranger.jpg">
