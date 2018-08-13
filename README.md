@@ -62,6 +62,56 @@ Declare in your html
 **`complete`** - (**`function`**) - the callback after selection. e.g: (complete)="testCallback($event)". $event will return { start: , **`string`**, end: **`string`** }
 
 
+
+#### Custom Ranges
+
+import the moment.js
+
+```
+import * as moment from 'moment';
+```
+
+Define the custom range menu
+
+```
+customRanges = [
+    {
+      text: 'Today', desc: 'Today', value: 'today',
+      start: moment(),
+      end: moment(),
+      default: true
+    },
+    {
+      text: 'Last 3 Months', desc: 'Last 3 Months', value: 'last3month',
+      start: moment().subtract(3, 'month').startOf('month'),
+      end: moment().subtract(1, 'month').endOf('month')
+    },
+    {
+      text: 'Last 6 Month', desc: 'Last Month', value: 'lastmonth',
+      start: moment().subtract(6, 'month').startOf('month'),
+      end: moment().subtract(1, 'month').endOf('month')
+    },
+    {
+      text: 'This Year', desc: 'This Year', value: 'thisyear',
+      start: moment().startOf('year'),
+      end: moment().endOf('year')
+    },
+    {
+      text: 'Last Year', desc: 'Last Year', value: 'lastyear',
+      start: moment().subtract(1, 'year').startOf('year'),
+      end: moment().subtract(1, 'year').endOf('year')
+    }
+  ];
+```
+
+Bind it with ranges
+
+```
+[ranges]="customRanges"
+```
+
+Check the example in DEMO page
+
 ## Run demo in development environment
 
 Fork, code, and build it, then run demo.
