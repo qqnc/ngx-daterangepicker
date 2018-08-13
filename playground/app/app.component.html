@@ -13,7 +13,9 @@
   </div>
   
   <hr>
+
   <div class="row">
+      <h2>Input Field Layout</h2>
     <lib-daterangepicker 
         class="daterangepicker"
         [(start)]="start2" [(end)]="end2" 
@@ -24,6 +26,23 @@
         minDate="6-10-2018" maxDate="12-20/2019"
         (complete)="testCallback($event)"></lib-daterangepicker>
       <div class="result">Binding Result: [ {{start2}} - {{end2}} ]</div>
+  </div>
+
+  <hr>
+  <div class="row">
+
+    <h2>Without Menu</h2>
+    <lib-daterangepicker 
+        class="daterangepicker"
+        [ranges]="false"
+        [(start)]="start3" [(end)]="end3" 
+        format="MM-DD-YYYY"
+        [pill]="false"
+        outputFormat="MM-DD-YYYY" 
+        opens="left" [pill]="true" 
+        minDate="6-10-2018" maxDate="12-20/2019"
+        (complete)="testCallback($event)"></lib-daterangepicker>
+      <div class="result">Binding Result: [ {{start3}} - {{end3}} ]</div>
   </div>
   
 </div>

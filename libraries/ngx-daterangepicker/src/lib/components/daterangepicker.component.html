@@ -9,9 +9,20 @@
   </a>
 </span>
 
-<div class="daterangepicker dropdown-menu ltr opensleft show-calendar" [ngStyle]="{ 'display': show? 'flex': 'none', 'top': menuTop+'px', 'left': menuLeft+'px', 'right': 'auto' }">
-  <lib-calendar [start]="startDate" [end]="endDate" [ngStyle]="{'display': showCalendar?'block':'none'}" 
-    [triggered]="trigger" (apply)='detected($event)' (cancel)='closeMenu()' #cEl *ngIf="opens==='left'" [ranges]="ranges" [minDate]="minDate" [maxDate]="maxDate"></lib-calendar>
+<div class="daterangepicker dropdown-menu ltr opensleft show-calendar" 
+  [ngStyle]="{ 'display': show? 'flex': 'none', 'top': menuTop+'px', 'left': menuLeft+'px', 'right': 'auto' }">
+  <lib-calendar 
+    [start]="startDate" 
+    [end]="endDate" 
+    [ngStyle]="{'display': showCalendar?'block':'none'}" 
+    [triggered]="trigger" 
+    (apply)='detected($event)' 
+    (cancel)='closeMenu()' 
+    #cEl 
+    *ngIf="opens==='left'" 
+    [ranges]="ranges" 
+    [minDate]="minDate" 
+    [maxDate]="maxDate"></lib-calendar>
   <div class="ranges" *ngIf="ranges">
     <ul>
       <li *ngFor='let range of ranges' [ngClass]="{ 'active': activeItem === range.text }" (click)='selectRange(range); toggleMenu()'>{{range.text}}</li>

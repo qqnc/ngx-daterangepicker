@@ -147,9 +147,9 @@ export class DaterangepickerComponent implements OnInit, AfterViewInit, AfterVie
     if (this.ranges) {
       this.selectRange(this.ranges[0]);
     } else {
-      // this.start = moment();
-      // this.end = moment();
-      this.renderText(this.start, this.end);
+      this.startDate = moment();
+      this.endDate = moment();
+      this.renderText(this.startDate, this.endDate);
       this.emitResult();
     }
   }
@@ -164,16 +164,15 @@ export class DaterangepickerComponent implements OnInit, AfterViewInit, AfterVie
 
   toggleMenu() {
     setTimeout(() => {
-    this.menuTop = this.el.nativeElement.offsetTop + 50;
-    this.menuLeft = this.el.nativeElement.offsetLeft;
-    this.show = !this.show;
-    if (this.ranges && this.showCalendar) {
-      this.menuLeft += 556;
-      this.showCalendar = !this.showCalendar;
-    } else if (!this.ranges) {
-      this.showCalendar = true;
-    }
-
+      this.menuTop = this.el.nativeElement.offsetTop + 50;
+      this.menuLeft = this.el.nativeElement.offsetLeft;
+      this.show = !this.show;
+      if (this.ranges && this.showCalendar) {
+        this.menuLeft += 556;
+        this.showCalendar = !this.showCalendar;
+      } else if (!this.ranges) {
+        this.showCalendar = true;
+      }
     }, 0);
   }
   renderText(start: momentNs.Moment, end: momentNs.Moment) {
@@ -230,7 +229,6 @@ export class DaterangepickerComponent implements OnInit, AfterViewInit, AfterVie
     this.emitResult();
     this.renderText(this.startDate, this.endDate);
     this.closeMenu();
-    // console.log(event);
   }
 
   emitResult() {

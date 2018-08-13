@@ -11,6 +11,8 @@ export class AppComponent {
   end1;
   start2;
   end2;
+  start3;
+  end3;
 
   constructor() {
   }
