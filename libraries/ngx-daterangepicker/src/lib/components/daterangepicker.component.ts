@@ -111,7 +111,7 @@ export class DaterangepickerComponent implements OnInit, AfterViewInit, AfterVie
 
     // if end not given
     if (typeof this.end === 'undefined') {
-      this.startDate = moment();
+      this.endDate = moment();
     }
 
     // check if it's object before check if it's string
