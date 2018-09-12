@@ -1,4 +1,4 @@
 *.css -text
 *.scss -text
 
-static/* linguist-vendored
+playground/* linguist-vendored
